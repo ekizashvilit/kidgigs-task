@@ -1,9 +1,10 @@
-import { Text, View, StyleSheet } from 'react-native';
+import CalendarScreen from '@/components/calendar/CalendarScreen';
+import { View, StyleSheet } from 'react-native';
 
 export default function HomePage() {
 	return (
 		<View style={styles.container}>
-			<Text style={styles.text}>my single page app</Text>
+			<CalendarScreen />
 		</View>
 	);
 }
