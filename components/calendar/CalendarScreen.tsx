@@ -1,41 +1,22 @@
 import styles from '@/styles/calendar.styles';
-import React, { useState, useCallback, useMemo } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import { Calendar, CalendarUtils } from 'react-native-calendars';
+import React, { useCallback } from 'react';
+import { SafeAreaView, ScrollView } from 'react-native';
+import { Calendar } from 'react-native-calendars';
 import Icon from 'react-native-vector-icons/Feather';
-
-const getToday = () => {
-	const date = new Date();
-	return CalendarUtils.getCalendarDateString(date);
-};
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
+import { setSelectedDate } from '@/store/slices/calendarSlice';
 
 const CalendarScreen = () => {
-	const [selected, setSelected] = useState<string | null>(null);
-	const today = getToday();
+	const dispatch = useDispatch();
+	const { markedDates } = useSelector((state: RootState) => state.calendar);
 
-	const onDayPress = useCallback((day) => {
-		setSelected(day.dateString);
-	}, []);
-
-	const marked = useMemo(() => {
-		const markedDates = {
-			[today]: {
-				selected: true,
-				selectedColor: '#EBF0F5',
-				selectedTextColor: '#736A8F',
-			},
-		};
-
-		if (selected) {
-			markedDates[selected] = {
-				selected: true,
-				selectedColor: '#FFB404',
-				selectedTextColor: 'white',
-			};
-		}
-
-		return markedDates;
-	}, [selected, today]);
+	const onDayPress = useCallback(
+		(day) => {
+			dispatch(setSelectedDate(day.dateString));
+		},
+		[dispatch]
+	);
 
 	const calendarTheme = {
 		dayTextColor: '#817A9B',
@@ -54,10 +35,10 @@ const CalendarScreen = () => {
 			<ScrollView showsVerticalScrollIndicator={false}>
 				<Calendar
 					enableSwipeMonths
-					current={today}
+					current={new Date().toISOString().split('T')[0]}
 					style={styles.calendar}
 					onDayPress={onDayPress}
-					markedDates={marked}
+					markedDates={markedDates}
 					theme={calendarTheme}
 					renderArrow={renderArrow}
 				/>
