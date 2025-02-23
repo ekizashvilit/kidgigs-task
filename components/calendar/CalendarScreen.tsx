@@ -1,29 +1,38 @@
 import styles from '@/styles/calendar.styles';
-import React, { useCallback } from 'react';
-import { SafeAreaView, ScrollView } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import Icon from 'react-native-vector-icons/Feather';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { setSelectedDate } from '@/store/slices/calendarSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { calendarTheme } from '@/constants/calendarTheme';
 
 const CalendarScreen = () => {
 	const dispatch = useDispatch();
 	const { markedDates } = useSelector((state: RootState) => state.calendar);
+	const [events, setEvents] = useState<{ [key: string]: string[] }>({});
+	const [selectedDateEvents, setSelectedDateEvents] = useState<string[]>([]);
+
+	useEffect(() => {
+		const loadEvents = async () => {
+			const storedEvents = await AsyncStorage.getItem('events');
+			if (storedEvents) {
+				setEvents(JSON.parse(storedEvents));
+			}
+		};
+		loadEvents();
+	}, []);
 
 	const onDayPress = useCallback(
-		(day) => {
+		async (day) => {
 			dispatch(setSelectedDate(day.dateString));
+			const dateEvents = events[day.dateString] || [];
+			setSelectedDateEvents(dateEvents);
 		},
-		[dispatch]
+		[dispatch, events]
 	);
-
-	const calendarTheme = {
-		dayTextColor: '#817A9B',
-		monthTextColor: '#261E53',
-		textMonthFontWeight: 'bold',
-		textSectionTitleColor: '#261E53',
-	};
 
 	const renderArrow = (direction: 'left' | 'right') => {
 		const iconName = direction === 'left' ? 'chevron-left' : 'chevron-right';
@@ -42,6 +51,17 @@ const CalendarScreen = () => {
 					theme={calendarTheme}
 					renderArrow={renderArrow}
 				/>
+				<View style={styles.eventContainer}>
+					{selectedDateEvents.length > 0 ? (
+						selectedDateEvents.map((event, index) => (
+							<Text key={index} style={styles.eventText}>
+								{event}
+							</Text>
+						))
+					) : (
+						<Text style={styles.eventText}>No events</Text>
+					)}
+				</View>
 			</ScrollView>
 		</SafeAreaView>
 	);

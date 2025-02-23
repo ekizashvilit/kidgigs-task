@@ -16,6 +16,17 @@ const styles = StyleSheet.create({
 		shadowOpacity: 1,
 		shadowRadius: 24,
 		elevation: 5,
+		marginBottom: 20,
+	},
+	eventContainer: {
+		padding: 20,
+		backgroundColor: '#FFF',
+		borderRadius: 15,
+		width: '80%',
+		marginHorizontal: 'auto',
+	},
+	eventText: {
+		fontSize: 16,
 	},
 });
 
