@@ -24,25 +24,13 @@ const EventListComponent: React.FC<EventListComponentProps> = ({
 
 	return (
 		<View style={eventFormStyles.noEventsContainer}>
-			{selectedDateEvents.length > 0 ? (
+			{selectedDate && (
 				<>
-					{selectedDateEvents.map((event, index) => (
-						<EventForm key={index} event={event} isEditMode={true} />
-					))}
-					<TouchableOpacity
-						style={eventFormStyles.createEventButton}
-						onPress={handleCreateEvent}
-					>
-						<Text style={eventFormStyles.createEventButtonText}>
-							Create New Event
-						</Text>
-					</TouchableOpacity>
-				</>
-			) : (
-				<>
-					{!showEventForm && (
+					{selectedDateEvents.length > 0 ? (
 						<>
-							<Text style={eventFormStyles.noEventsText}>No events</Text>
+							{selectedDateEvents.map((event, index) => (
+								<EventForm key={index} event={event} isEditMode={true} />
+							))}
 							<TouchableOpacity
 								style={eventFormStyles.createEventButton}
 								onPress={handleCreateEvent}
@@ -52,21 +40,37 @@ const EventListComponent: React.FC<EventListComponentProps> = ({
 								</Text>
 							</TouchableOpacity>
 						</>
-					)}
-					{showEventForm && (
-						<View style={eventFormStyles.cardContainer}>
-							<TouchableOpacity
-								style={eventFormStyles.closeButton}
-								onPress={handleCloseForm}
-							>
-								<Icon name='x' size={24} color='#261E53' />
-							</TouchableOpacity>
-							<EventForm
-								isEditMode={false}
-								event={null}
-								selectedDate={selectedDate}
-							/>
-						</View>
+					) : (
+						<>
+							{!showEventForm && (
+								<>
+									<Text style={eventFormStyles.noEventsText}>No events</Text>
+									<TouchableOpacity
+										style={eventFormStyles.createEventButton}
+										onPress={handleCreateEvent}
+									>
+										<Text style={eventFormStyles.createEventButtonText}>
+											Create New Event
+										</Text>
+									</TouchableOpacity>
+								</>
+							)}
+							{showEventForm && (
+								<View style={eventFormStyles.cardContainer}>
+									<TouchableOpacity
+										style={eventFormStyles.closeButton}
+										onPress={handleCloseForm}
+									>
+										<Icon name='x' size={24} color='#261E53' />
+									</TouchableOpacity>
+									<EventForm
+										isEditMode={false}
+										event={null}
+										selectedDate={selectedDate}
+									/>
+								</View>
+							)}
+						</>
 					)}
 				</>
 			)}
