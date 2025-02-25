@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+const calendarStyles = StyleSheet.create({
 	calendar: {
 		marginTop: 40,
 		borderRadius: 15,
@@ -18,16 +18,6 @@ const styles = StyleSheet.create({
 		elevation: 5,
 		marginBottom: 20,
 	},
-	eventContainer: {
-		padding: 20,
-		backgroundColor: '#FFF',
-		borderRadius: 15,
-		width: '80%',
-		marginHorizontal: 'auto',
-	},
-	eventText: {
-		fontSize: 16,
-	},
 });
 
-export default styles;
+export default calendarStyles;

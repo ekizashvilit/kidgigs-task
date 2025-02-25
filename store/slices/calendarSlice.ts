@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CalendarUtils } from 'react-native-calendars';
-import { CalendarState } from '../types/calendar.types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { CalendarState } from '../../types/calendar';
 
 const getToday = () => {
 	const date = new Date();

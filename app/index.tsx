@@ -1,23 +1,26 @@
-import CalendarScreen from '@/components/calendar/CalendarScreen';
-import { View, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
+import { SafeAreaView, ScrollView } from 'react-native';
+
+import { RootState } from '@/store/store';
+import useEvents from '@/hooks/useEvents';
+import CalendarComponent from '@/components/calendar/CalendarComponent';
+import EventListComponent from '@/components/calendar/EventListComponent';
 
 export default function HomePage() {
+	const { markedDates } = useSelector((state: RootState) => state.calendar);
+	const { selectedDateEvents, onDayPress } = useEvents();
+
+	const handleCreateEvent = () => {};
+
 	return (
-		<View style={styles.container}>
-			<CalendarScreen />
-		</View>
+		<SafeAreaView style={{ flex: 1, width: '100%' }}>
+			<ScrollView showsVerticalScrollIndicator={false}>
+				<CalendarComponent onDayPress={onDayPress} markedDates={markedDates} />
+				<EventListComponent
+					selectedDateEvents={selectedDateEvents}
+					onCreateEvent={handleCreateEvent}
+				/>
+			</ScrollView>
+		</SafeAreaView>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#F5F5F5',
-	},
-	text: {
-		fontSize: 20,
-		fontWeight: 'bold',
-	},
-});
