@@ -9,8 +9,12 @@ import { useEventForm } from '@/hooks/useEventForm';
 import RepeatSelect from '../inputs/RepeatSelectInput';
 import eventFormStyles from '@/styles/eventForm.styles';
 
-const EventForm: React.FC<EventFormProps> = ({ event, isEditMode }) => {
-	const { control } = useEventForm(event);
+const EventForm: React.FC<EventFormProps> = ({
+	event,
+	isEditMode,
+	selectedDate,
+}) => {
+	const { control } = useEventForm(event, selectedDate);
 
 	return (
 		<View style={eventFormStyles.container}>

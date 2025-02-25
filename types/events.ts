@@ -10,18 +10,13 @@ export interface EventListComponentProps {
 	onCreateEvent: () => void;
 	showEventForm: boolean;
 	setShowEventForm: (show: boolean) => void;
+	selectedDate: string | null;
 }
 
 export interface EventFormProps {
-	event: {
-		eventName: string;
-		startDate: string | null;
-		startTime: string | null;
-		endDate: string | null;
-		endTime: string | null;
-		repeat: string;
-	} | null;
+	event: any | null;
 	isEditMode: boolean;
+	selectedDate?: string | null;
 }
 
 export interface Day {

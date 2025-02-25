@@ -11,7 +11,9 @@ import EventListComponent from '@/components/calendar/EventListComponent';
 export default function HomePage() {
 	const [showEventForm, setShowEventForm] = useState(false);
 
-	const { markedDates } = useSelector((state: RootState) => state.calendar);
+	const { markedDates, selectedDate } = useSelector(
+		(state: RootState) => state.calendar
+	);
 	const { selectedDateEvents, onDayPress } = useEvents();
 
 	const handleCreateEvent = () => {};
@@ -35,6 +37,7 @@ export default function HomePage() {
 					onCreateEvent={handleCreateEvent}
 					showEventForm={showEventForm}
 					setShowEventForm={setShowEventForm}
+					selectedDate={selectedDate}
 				/>
 			</ScrollView>
 		</SafeAreaView>

@@ -11,6 +11,7 @@ const EventListComponent: React.FC<EventListComponentProps> = ({
 	onCreateEvent,
 	showEventForm,
 	setShowEventForm,
+	selectedDate,
 }) => {
 	const handleCreateEvent = () => {
 		setShowEventForm(true);
@@ -60,7 +61,11 @@ const EventListComponent: React.FC<EventListComponentProps> = ({
 							>
 								<Icon name='x' size={24} color='#261E53' />
 							</TouchableOpacity>
-							<EventForm isEditMode={false} event={null} />
+							<EventForm
+								isEditMode={false}
+								event={null}
+								selectedDate={selectedDate}
+							/>
 						</View>
 					)}
 				</>
