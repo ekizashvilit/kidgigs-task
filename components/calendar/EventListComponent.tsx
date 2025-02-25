@@ -9,9 +9,9 @@ import { EventListComponentProps } from '@/types/events';
 const EventListComponent: React.FC<EventListComponentProps> = ({
 	selectedDateEvents,
 	onCreateEvent,
+	showEventForm,
+	setShowEventForm,
 }) => {
-	const [showEventForm, setShowEventForm] = useState(false);
-
 	const handleCreateEvent = () => {
 		setShowEventForm(true);
 		onCreateEvent();

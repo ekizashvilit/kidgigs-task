@@ -8,6 +8,8 @@ export interface Event {
 export interface EventListComponentProps {
 	selectedDateEvents: any[];
 	onCreateEvent: () => void;
+	showEventForm: boolean;
+	setShowEventForm: (show: boolean) => void;
 }
 
 export interface EventFormProps {
@@ -24,4 +26,8 @@ export interface EventFormProps {
 
 export interface Day {
 	dateString: string;
+	day: number;
+	month: number;
+	timestamp: number;
+	year: number;
 }
