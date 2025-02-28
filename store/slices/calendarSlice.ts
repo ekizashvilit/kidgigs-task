@@ -1,7 +1,7 @@
 import { CalendarUtils } from 'react-native-calendars';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { CalendarState } from '../../types/calendar';
+import { CalendarMarking, CalendarState } from '../../types/calendar';
 
 const getToday = () => {
 	const date = new Date();
@@ -25,31 +25,51 @@ const calendarSlice = createSlice({
 	reducers: {
 		setSelectedDate: (state, action: PayloadAction<string>) => {
 			state.selectedDate = action.payload;
-			state.markedDates = {
-				[getToday()]: {
-					selected: true,
-					selectedColor: '#EBF0F5',
-					selectedTextColor: '#736A8F',
-				},
-				[action.payload]: {
-					selected: true,
-					selectedColor: '#FFB404',
-					selectedTextColor: 'white',
-				},
-			};
 		},
 		clearSelectedDate: (state) => {
 			state.selectedDate = null;
-			state.markedDates = {
-				[getToday()]: {
-					selected: true,
-					selectedColor: '#EBF0F5',
-					selectedTextColor: '#736A8F',
-				},
+		},
+		updateMarkedDatesWithEvents: (
+			state,
+			action: PayloadAction<{ [key: string]: any }>
+		) => {
+			const eventDates = action.payload;
+
+			const updatedMarkedDates: { [key: string]: CalendarMarking } = {};
+
+			Object.keys(eventDates).forEach((date) => {
+				updatedMarkedDates[date] = {
+					...updatedMarkedDates[date],
+					marked: true,
+					dotColor: '#FFB404',
+				};
+			});
+
+			const today = getToday();
+			updatedMarkedDates[today] = {
+				...updatedMarkedDates[today],
+				selected: state.selectedDate !== today,
+				selectedColor: '#EBF0F5',
+				selectedTextColor: '#736A8F',
 			};
+
+			if (state.selectedDate) {
+				updatedMarkedDates[state.selectedDate] = {
+					...updatedMarkedDates[state.selectedDate],
+					selected: true,
+					selectedColor: '#FFB404',
+					selectedTextColor: 'white',
+				};
+			}
+
+			state.markedDates = updatedMarkedDates;
 		},
 	},
 });
 
-export const { setSelectedDate, clearSelectedDate } = calendarSlice.actions;
+export const {
+	setSelectedDate,
+	clearSelectedDate,
+	updateMarkedDatesWithEvents,
+} = calendarSlice.actions;
 export default calendarSlice.reducer;
