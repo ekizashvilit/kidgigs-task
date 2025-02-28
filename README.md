@@ -1,50 +1,67 @@
-# Welcome to your Expo app 👋
+# Calendar Event Scheduling App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A mobile scheduling application built with React Native (Expo) that enables users to create, manage, and schedule recurring events.
 
-## Get started
+## Repository
 
-1. Install dependencies
+[GitHub Repository](https://github.com/ekizashvilit/kidgigs-task)
 
-   ```bash
-   npm install
-   ```
+## Installation
 
-2. Start the app
+1. Open the repository
+2. Install dependencies: npm install
+3. Start the project: npm start
 
-   ```bash
-    npx expo start
-   ```
+## Features
 
-In the output, you'll find options to open the app in a
+- **Calendar Interface**: Intuitive calendar view with date selection
+- **Event Management**:
+  - Create new events with name, time, and repeat options
+  - Edit existing events
+  - Delete events
+  - View events for selected dates
+- **Recurring Events**: Support for weekly, bi-weekly, and monthly repeat options
+- **Visual Indicators**: Dates with scheduled events are highlighted with dots
+- **Data Persistence**: Events are stored locally and retained between app sessions
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Usage
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Calendar Navigation
 
-## Get a fresh project
+- The current date is initially selected
+- Tap any date to view its scheduled events
+- Dates with events are marked with dots
 
-When you're ready, run:
+### Managing Events
 
-```bash
-npm run reset-project
-```
+- Select a date and tap "Create New Event" to create a new event
+- Event name is required, other fields have default values
+- Set the start and end time for your event
+- Choose a repeat option (None, Weekly, Bi-weekly, Monthly)
+- Click "Save" to confirm creation
+- Select existing events to edit or delete them
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Testing Features
 
-## Learn more
+- **Create Past Events**: Generates sample events in the past for testing purposes
+  - Note: Users cannot create events in the past, only view them
+  - When no past events exist, the app displays "No events were scheduled for {date}"
+- **Reset All Events**: Clears all events (both past and future) from the app
 
-To learn more about developing your project with Expo, look at the following resources:
+## Validation
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Cannot create events in the past
+- Cannot create overlapping events (events with conflicting time slots)
+- Event name is required
 
-## Join the community
+## Technical Implementation
 
-Join our community of developers creating universal apps.
+- Built with React Native (Expo)
+- State management using Redux
+- Compatible with iOS, Android, and Web platforms
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Project Structure
+
+- Components are organized by functionality
+- Hooks handle business logic
+- Type definitions ensure code reliability
