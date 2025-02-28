@@ -2,6 +2,16 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { EventFormProps, EventFormData } from '@/types/events';
 
+/**
+ * useEventForm Hook
+ *
+ * Manages form state for creating and editing events:
+ * - Handles form validation with required event name
+ * - Sets default times (current time + 1 hour duration)
+ * - Pre-fills form when editing existing events
+ * - Resets form when selected date changes
+ */
+
 const getCurrentTimeString = (): string => {
 	const now = new Date();
 	const hours = String(now.getHours()).padStart(2, '0');

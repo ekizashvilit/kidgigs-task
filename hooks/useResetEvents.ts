@@ -9,6 +9,10 @@ import {
 } from '@/store/slices/eventsSlice';
 import { updateMarkedDatesWithEvents } from '@/store/slices/calendarSlice';
 
+/**
+ * Provides functionality to completely reset the application by removing all events from both storage and state after user confirmation.
+ */
+
 export default function useResetEvents() {
 	const dispatch = useDispatch();
 

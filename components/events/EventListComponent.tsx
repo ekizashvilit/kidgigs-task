@@ -10,6 +10,17 @@ import { useDateUtils } from '@/hooks/useDateUtils';
 import eventFormStyles from '@/styles/eventForm.styles';
 import { EventListComponentProps } from '@/types/events';
 
+/**
+ * EventListComponent
+ *
+ * Displays events for the selected calendar date and provides UI for event management.
+ * - Shows existing events for the selected date
+ * - Provides form to create new events (only for future dates)
+ * - Handles different UI states for past vs. future dates
+ * - Displays appropriate messages when no events exist
+ * - Ensures past events are read-only
+ */
+
 const EventListComponent: React.FC<EventListComponentProps> = ({
 	showEventForm,
 	setShowEventForm,

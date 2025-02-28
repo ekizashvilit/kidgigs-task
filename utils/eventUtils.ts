@@ -2,6 +2,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Event } from '@/types/events';
 
+/**
+ * Time handling:
+ * - Formats time values to HH:mm:ss
+ * - Converts between Date objects and time strings
+ *
+ * Event validation:
+ * - Checks for time conflicts between events
+ * - Validates event time ranges
+ *
+ * Storage operations:
+ * - Saves/removes events to/from AsyncStorage
+ * - Maintains events data structure by date
+ */
+
 export const formatTimeValue = (timeValue: Date | null | string): string => {
 	if (!timeValue) return '00:00:00';
 

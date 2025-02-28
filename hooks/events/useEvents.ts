@@ -11,6 +11,14 @@ import { RootState } from '@/store/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setEvents, setSelectedDateEvents } from '@/store/slices/eventsSlice';
 
+/**
+ * Manages calendar event functionality:
+ * - Loads events from storage on mount
+ * - Updates UI when selected date changes
+ * - Handles day selection in calendar
+ * - Keeps marked dates synchronized with events
+ */
+
 const useEvents = () => {
 	const dispatch = useDispatch();
 	const { selectedDate } = useSelector((state: RootState) => state.calendar);

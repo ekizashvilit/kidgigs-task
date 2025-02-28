@@ -2,6 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Event } from '@/types/events';
 
+/**
+ * Redux slice for event management
+ * Handles storing, retrieving, updating, and deleting calendar events
+ */
+
 interface EventsState {
 	events: { [key: string]: Event[] };
 	selectedDateEvents: Event[];

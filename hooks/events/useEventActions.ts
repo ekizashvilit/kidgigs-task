@@ -25,6 +25,19 @@ import { RootState } from '@/store/store';
 import { useDateUtils } from '../useDateUtils';
 import { Event, EventFormData, EventFormProps } from '@/types/events';
 
+/**
+ * Manages all CRUD operations for calendar events including:
+ * - Creating new events with validation for time conflicts
+ * - Updating existing events
+ * - Deleting events with special handling for recurring series
+ * - Handling recurring event creation, updates and deletion
+ * - Providing confirmation dialogs for destructive actions
+ * - Managing state updates in both Redux and local storage
+ *
+ * This hook centralizes event manipulation logic to ensure consistent
+ * handling of events across the application.
+ */
+
 const useEventActions = ({
 	event,
 	isEditMode,

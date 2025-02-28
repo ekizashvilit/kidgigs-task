@@ -7,6 +7,10 @@ import { RootState } from '@/store/store';
 import { useEventStorage } from './events/useEventStorage';
 import { addEvent } from '@/store/slices/eventsSlice';
 
+/**
+ hook for testing purposes that Creates sample events for past dates (Feb 20-26, 2025)
+ */
+
 export default function useCreatePastEvents() {
 	const dispatch = useDispatch();
 	const { events } = useSelector((state: RootState) => state.events);

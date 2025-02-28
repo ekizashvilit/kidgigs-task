@@ -2,6 +2,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Event } from '@/types/events';
 
+/**
+ * - Creates weekly, bi-weekly and monthly recurring events
+ * - Handles event series deletion and updates
+ * - Maintains recurring event IDs with patterns (baseId-w1, baseId-b1, baseId-m1)
+ * - Stores recurring events for up to 1 year from start date
+ */
+
 export const isRecurringSeries = (eventId: string): boolean => {
 	return eventId.includes('-') && Boolean(eventId.match(/-(w|b|m)\d+$/));
 };

@@ -3,6 +3,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { CalendarMarking, CalendarState } from '../../types/calendar';
 
+/**
+ * Redux slice for calendar state management
+ * Handles selected dates, marked dates for events, and visual indicators
+ */
+
 const getToday = () => {
 	const date = new Date();
 	return CalendarUtils.getCalendarDateString(date);
