@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Calendar } from 'react-native-calendars';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -10,10 +10,13 @@ const CalendarComponent: React.FC<CalendarComponentProps> = ({
 	onDayPress,
 	markedDates,
 }) => {
-	const renderArrow = (direction: 'left' | 'right') => {
-		const iconName = direction === 'left' ? 'chevron-left' : 'chevron-right';
-		return <Icon name={iconName} size={24} color='#261E53' />;
-	};
+	const renderArrow = useMemo(
+		() => (direction: 'left' | 'right') => {
+			const iconName = direction === 'left' ? 'chevron-left' : 'chevron-right';
+			return <Icon name={iconName} size={24} color='#261E53' />;
+		},
+		[]
+	);
 
 	return (
 		<Calendar
