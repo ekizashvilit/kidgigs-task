@@ -1,15 +1,19 @@
+export interface CalendarMarking {
+	selected?: boolean;
+	selectedColor?: string;
+	selectedTextColor?: string;
+	marked?: boolean;
+	dotColor?: string;
+}
+
 export interface CalendarState {
 	selectedDate: string | null;
 	markedDates: {
-		[key: string]: {
-			selected: boolean;
-			selectedColor: string;
-			selectedTextColor: string;
-		};
+		[key: string]: CalendarMarking;
 	};
 }
 
 export interface CalendarComponentProps {
 	onDayPress: (day: any) => void;
-	markedDates: { [key: string]: any };
+	markedDates: { [key: string]: CalendarMarking };
 }

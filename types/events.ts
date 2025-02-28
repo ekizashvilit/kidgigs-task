@@ -1,22 +1,30 @@
 export interface Event {
+	id: string;
 	eventName: string;
-	starts: { date: string; time: string };
-	ends: { date: string; time: string };
+	startDate: string;
+	startTime: string;
+	endDate: string;
+	endTime: string;
 	repeat: 'weekly' | 'bi-weekly' | 'monthly' | 'none';
 }
 
 export interface EventListComponentProps {
-	selectedDateEvents: any[];
-	onCreateEvent: () => void;
 	showEventForm: boolean;
 	setShowEventForm: (show: boolean) => void;
 	selectedDate: string | null;
 }
 
 export interface EventFormProps {
-	event: any | null;
+	event: Event | null;
 	isEditMode: boolean;
 	selectedDate?: string | null;
+	onFormClose?: () => void;
+	readOnly?: boolean;
+}
+
+export interface EventsState {
+	events: Record<string, Event[]>;
+	selectedDateEvents: Event[];
 }
 
 export interface Day {
@@ -25,4 +33,13 @@ export interface Day {
 	month: number;
 	timestamp: number;
 	year: number;
+}
+
+export interface EventFormData {
+	eventName: string;
+	startDate?: string;
+	startTime: Date | string | null;
+	endDate?: string;
+	endTime: Date | string | null;
+	repeat?: 'weekly' | 'bi-weekly' | 'monthly' | 'none';
 }
