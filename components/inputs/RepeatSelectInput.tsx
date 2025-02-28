@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import eventFormStyles from '@/styles/eventForm.styles';
+import repeatInputStyles from '@/styles/repeatInput.styles';
 
 const repeatOptions = [
 	{ label: 'Weekly', value: 'weekly' },
@@ -18,26 +18,30 @@ const RepeatSelect = ({ control, name }: { control: any; name: string }) => {
 			control={control}
 			name={name}
 			render={({ field: { onChange, value } }) => (
-				<View style={eventFormStyles.inputContainer}>
-					<Text style={eventFormStyles.label}>Repeat</Text>
+				<View style={repeatInputStyles.inputContainer}>
+					<Text style={repeatInputStyles.label}>Repeat</Text>
 					<TouchableOpacity
-						style={eventFormStyles.select}
+						style={repeatInputStyles.select}
 						onPress={() => setIsSelectOpen(!isSelectOpen)}
 					>
-						<Text>{value || 'Select repeat option'}</Text>
+						<Text style={repeatInputStyles.selectText}>
+							{value || 'Select repeat option'}
+						</Text>
 					</TouchableOpacity>
 					{isSelectOpen && (
-						<View style={eventFormStyles.optionsContainer}>
+						<View style={repeatInputStyles.optionsContainer}>
 							{repeatOptions.map((option) => (
 								<TouchableOpacity
 									key={option.value}
-									style={eventFormStyles.option}
+									style={repeatInputStyles.option}
 									onPress={() => {
 										onChange(option.value);
 										setIsSelectOpen(false);
 									}}
 								>
-									<Text>{option.label}</Text>
+									<Text style={repeatInputStyles.optionText}>
+										{option.label}
+									</Text>
 								</TouchableOpacity>
 							))}
 						</View>
